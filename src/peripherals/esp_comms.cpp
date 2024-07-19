@@ -16,7 +16,7 @@ namespace {
 }
 
 void espCommsInit() {
-  USART_ESP.begin(115200);
+  USART_ESP.begin(115200); 
 
   // mcuComms.setDebugPort(&USART_ESP);
   McuCommsSingleton::getInstance().begin(USART_ESP);

@@ -20,5 +20,5 @@ void log(const char* prefix, const char* file, const int line, const char* msg, 
   check = snprintf(logLineBuf, sizeof(logLineBuf), "%s (%s:%i): %s", prefix, file, line, msgBuf);
   if (check > 0 && static_cast<unsigned int>(check) <= sizeof(logLineBuf))
     USART_DEBUG.println(logLineBuf);
-    USART_ESP.println(logLineBuf);
+    USART_ESP.println(logLineBuf); 
 }
