@@ -271,6 +271,7 @@ static void readTankWaterLevel(void)
     // static uint32_t tof_timeout = millis();
     // if (millis() >= tof_timeout) {
     currentState.waterLvl = tof.readLvl();
+    //USART_ESP.println(currentState.waterLvl); // monitor
     // tof_timeout = millis() + 500;
     // }
   }
