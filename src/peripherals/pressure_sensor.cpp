@@ -5,6 +5,7 @@
 #include "../lcd/lcd.h"
 #include "../log.h"
 #include "i2c_bus_reset.h"
+#include "peripherals/tca9548a.h"
 
 #if defined SINGLE_BOARD
 ADS1015 ADS(0x48);
@@ -16,6 +17,7 @@ float previousPressure;
 float currentPressure;
 
 void adsInit(void) {
+  tcaselect(1);//Adafruit TCA9548A I2C Multiplexer module
   ADS.begin();
   ADS.setGain(0);      // 6.144 volt
   ADS.setDataRate(4);  // fast
@@ -29,12 +31,15 @@ float getPressure(void) {  //returns sensor pressure data
   // range 921.6 - 102.4 = 204.8 or 819.2 or 21333.3
   // pressure gauge range 0-1.2MPa - 0-12 bar
   // 1 bar = 17.1 or 68.27 or 1777.8
-
+tcaselect(1); //Adafruit TCA9548A I2C Multiplexer module
   getAdsError();
 
   previousPressure = currentPressure;
 #if defined SINGLE_BOARD
   currentPressure = (ADS.getValue() - 166) / 111.11f; // 12bit
+  float aa = ADS.getValue();
+  USART_ESP.println(aa);
+  USART_ESP.println(currentPressure); 
 #else
   currentPressure = (ADS.getValue() - 2666) / 1777.8f; // 16bit
 #endif

@@ -23,6 +23,7 @@
 #include "peripherals/esp_comms.h"
 #include "peripherals/led.h"
 #include "peripherals/tof.h"
+#include "peripherals/tca9548a.h"
 
 // Define some const values
 #if defined SINGLE_BOARD

@@ -189,7 +189,6 @@ static void sensorsReadWeight(void)
 static void sensorsReadPressure(void)
 {
   uint32_t elapsedTime = millis() - pressureTimer;
-
   if (elapsedTime > GET_PRESSURE_READ_EVERY)
   {
     float elapsedTimeSec = elapsedTime / 1000.f;
